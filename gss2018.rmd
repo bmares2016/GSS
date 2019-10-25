@@ -48,7 +48,7 @@ $H_A$:There is a statistical diffrence between the people who agree on the death
 
 We will be using both graphical descriptive and numerical descriptive results.
 
-##Results
+## Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
@@ -65,7 +65,8 @@ We use barcharts to compare Numerical vs Numerical data.
 barchartGC(~CAPPUN + OWNGUN,data=mydata4)
 barchartGC(~CAPPUN + OWNGUN,data=mydata4,type="percent")
 ```
-In these charts you can see that the amount of people in favor of the death penalty is almost equivelant to the amount of people againts it. While the amount of people who oppose the right to own guns in significant higher the those in favor.
+
+In these charts you can see that the amount of people in favor of the death penalty is almost equivelant to the amount of people againts it. While the amount of people who oppose the right to own guns is significantly higher then those in favor.
 
 #### Numerical Descriptive Results
 
@@ -93,7 +94,7 @@ Now answer Is belief in the bigbang theory (BIGBANG) independent of belief in th
 
 $H_0$:There is no diffrence in the people who belive on both the big bang and afterlife.
 
-$H_A$:There is a statistical diffrence between the people who belive  on the big bang and afterlife.
+$H_A$:There is a statistical diffrence between the people who belive in the big bang and afterlife.
 
 ## Methods
 
@@ -101,7 +102,7 @@ $H_A$:There is a statistical diffrence between the people who belive  on the big
 
 We will be using both graphical descriptive and numerical descriptive results.
 
-##Results
+## Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
@@ -116,6 +117,8 @@ barchartGC(~BIGBANG + POSTLIFE,data=mydata4)
 barchartGC(~BIGBANG + POSTLIFE,data=mydata4,type="percent")
 ```
 
+ This barchart shows there is a there is a conection of people who believe in the big bang and people who do not believe in the afterlife.
+
 #### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
@@ -125,7 +128,16 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
+This table tells us that out of the people who believe in the big bang, 82% of them did not believe in an after life while 18% beleieve there is.
+
 ### Inferential Results
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+```
+
+Here we get a P-Value=0.0009
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
@@ -135,25 +147,59 @@ colPerc(table1)
 
 Finally determine if a persons opinion on death penalty (CAPPUN) is independent of their race (RACE).
 
+$H_0$:There is no correlation between the people who agree on both the death penalty and their race.
+
+$H_A$:There is correlation between the poeple who agree on both the death penalty and their race.
+
 ## Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
 
-##Results
+We will be using both graphical descriptive and numerical descriptive results.
+
+## Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
 ### Descriptive Results
 
+The result concluded that the majority of white and other people believe in the death penalty while a the majority of black people are against it.
+
 #### Graphical Descriptive Results
+
+We use barcharts to compare Numerical vs Numerical data.
+
+```{r}
+barchartGC(~CAPPUN + RACE,data=mydata4)
+barchartGC(~CAPPUN + RACE,data=mydata4,type="percent")
+```
+
+This barchart shows that there is of white people who believe the death penalty.
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 #### Numerical Descriptive Results
 
+```{r}
+table1 <- xtabs(~CAPPUN + RACE,data=mydata4)
+rowPerc(table1)
+colPerc(table1)
+```
+
+This table tells us that of the people who are in favor of the death penalty, 79% was white and 8% were black
+
+This also tells us tha a majority of the people white people agree on the death penalty while the majority of the black poeple oppose it.
+
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ### Inferential Results
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+```
+
+Here we have a P-Value 0.09
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
@@ -162,3 +208,8 @@ Finally determine if a persons opinion on death penalty (CAPPUN) is independent 
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
+For Question 1, we reject the null hypothesis that there is no difference in the poeple who agree on both the death penalty and the right to own guns, as we can see that the amount of people who agree on the death penalty are almost as many of those who oppose.
+
+For Question 2, we reject the null hypothesis that There is no difference in the people who believe on both the big bang and an afterlife. we can see by the data that the majority of poeple who beleive in the big bang do not believe in the after life
+
+For Question 3, we fail to reject the null hypothesis that There is no correlation between the poeple who agree on both the death penalty and their race.
